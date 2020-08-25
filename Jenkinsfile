@@ -3,12 +3,13 @@ pipeline
     agent any
     stages 
     {
-        stage('build')
+        stage('Build Jar')
         {
-            steps
+            steps 
             {
-                sh './gradlew build --no-daemon'
+                sh 'mvn package'
+                stash includes: 'target/*.jar', name: 'targetfiles'
             }
-        }
+        }   
     }
 }
