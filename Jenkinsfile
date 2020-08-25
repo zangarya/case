@@ -49,6 +49,10 @@ pipeline
                 {
                     openshift.withCluster( 'https://92.168.99.100:8443/', 'Y4NJ45sE_GpglJkDSS1ILO9GFWkyzT9JtXrpBQUpiYw' )
                     {
+                        openshift.withProject( 'jtop' ) 
+                        {
+                            echo "Hello from project ${openshift.project()} in cluster ${openshift.cluster()}"
+                        }
                     }
                 }
             }
