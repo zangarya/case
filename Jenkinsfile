@@ -47,7 +47,7 @@ pipeline
             {
                 script
                 {
-                    openshift.withCluster('https://192.168.99.100:8443/', 'openshift_login')
+                    openshift.withCluster('https://127.0.0.1:8443/', 'openshift_login')
                     {
                         openshift.withProject( 'jtop' ) 
                         {
