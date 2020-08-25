@@ -1,18 +1,14 @@
 pipeline {
-  agent any
-  stages {
-  stage('Stage 1') {
-      steps {
-        script {
-          echo 'Stage 1'
-        }
-      }
+  agent {
+    dockerfile {
+      filename 'Dockerfile'
     }
-  stage('Stage 2') {
+    
+  }
+  stages {
+    stage('compile') {
       steps {
-        script {
-          echo 'Stage 2'
-        }
+        sh 'mvn clean install'
       }
     }
   }
