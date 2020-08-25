@@ -8,7 +8,7 @@ pipeline
             steps 
             {
                 sh '''
-                 mvn clean package
+                 clean package
                  cd target
                  cp todo-app-java-on-azure-1.0-SNAPSHOT.jar msrest.jar 
                  zip msrest.zip app.jar web.config
