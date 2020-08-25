@@ -52,7 +52,7 @@ pipeline
                         openshift.withProject( 'jtop' ) 
                         {
                             echo "Hello from project ${openshift.project()} in cluster ${openshift.cluster()}"
-                            openshift.newApp('eminturan/denemes')
+                            def created = openshift.newApp('eminturan/denemes')
                             echo "new-app created ${created.count()} objects named: ${created.names()}" 
                         }
                     }
