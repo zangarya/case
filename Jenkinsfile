@@ -41,7 +41,7 @@ pipeline
                 }
             }
         }
-        stage('Deploy To Openshift')
+        stage('Login Openshift')
         {
             steps 
             {
@@ -53,7 +53,18 @@ pipeline
                         {
                             echo "Hello from project ${openshift.project()} in cluster ${openshift.cluster()}"
                         }
-                        
+                    }
+                }
+            }
+        }
+        stage('Create App in Openshift')
+        {
+            steps 
+            {
+                script
+                {
+                    openshift.withCluster()
+                    {
                         echo "App Create:"
                         def created = openshift.newApp('eminturan/denemes:latest')
                         echo "new-app created ${created.count()} objects named: ${created.names()}"
