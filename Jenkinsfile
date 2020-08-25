@@ -45,6 +45,7 @@ pipeline
         {
             steps 
             {
+                sh 'oc login -u admin -p admin https://192.168.99.100:8443 --insecure-skip-tls-verify=true'
                 script
                 {
                     openshift.withCluster('https://192.168.99.100:8443/', 'openshift_login')
