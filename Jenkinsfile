@@ -23,9 +23,20 @@ pipeline
         {
             steps {
                 script {
-                    app = docker.build("eminturan/denemes")
-                    app.inside {
-                        sh 'echo Emin, Turan'
+                    app = docker.build("eminturan/denemes")                    
+                }
+            }
+        }
+        stage('Push Docker Image') 
+        {
+            steps 
+            {
+                script 
+                {
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') 
+                    {
+                        app.push("${env.BUILD_NUMBER}")
+                        app.push("latest")
                     }
                 }
             }
