@@ -47,6 +47,7 @@ pipeline
             {
                 sh 'oc login -u admin -p admin https://192.168.99.100:8443 --insecure-skip-tls-verify=true'
                 sh 'oc project jtop'
+                sh 'oc delete service denemes'
                 sh 'oc new-app eminturan/denemes:latest --name denemes'
                 sh 'oc expose service denemes'
             }
