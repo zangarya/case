@@ -47,16 +47,21 @@ pipeline
             {
                 script
                 {
-                    openshift.withCluster('https://192.168.99.100:8443/', 'Y4NJ45sE_GpglJkDSS1ILO9GFWkyzT9JtXrpBQUpiYw')
+                    openshift.withCluster('https://192.168.99.100:8443/', 'f7CQD0ugxUl3UH2HPf3uQOtpZtrxzwemw5L4xxbfOv0')
                     {
                         openshift.withProject( 'jtop' ) 
                         {
                             echo "Hello from project ${openshift.project()} in cluster ${openshift.cluster()}"
-                            echo "App Create:"
-                            def created = openshift.newApp('eminturan/denemes:latest')
-                            echo "new-app created ${created.count()} objects named: ${created.names()}"
-                            created.describe()
+                            echo "1"
                         }
+                        def saSelector = openshift.selector( 'serviceaccount' )
+                        saSelector.describe()
+                        saSelector.withEach 
+                        {
+                            echo "Service account: ${it.name()} is defined in ${openshift.project()}"
+                        }
+                        echo "There are ${saSelector.count()} service accounts in project ${openshift.project()}"
+                        echo "They are named: ${saSelector.names()}"
                     }
                 }
             }
