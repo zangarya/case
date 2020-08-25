@@ -7,7 +7,7 @@ pipeline
         {
             steps
             {
-                sh 'mvn clean install' 
+                sh './gradlew build --no-daemon'
             }
         }
     }
