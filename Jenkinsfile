@@ -53,14 +53,8 @@ pipeline
                         {
                             echo "Hello from project ${openshift.project()} in cluster ${openshift.cluster()}"
                         }
-                        def saSelector = openshift.selector( 'serviceaccount' )
-                        saSelector.describe()
-                        saSelector.withEach 
-                        {
-                            echo "Service account: ${it.name()} is defined in ${openshift.project()}"
-                        }
-                        echo "There are ${saSelector.count()} service accounts in project ${openshift.project()}"
-                        echo "They are named: ${saSelector.names()}"
+                        def created = openshift.newApp( 'eminturan/denemes:latest' )
+                        echo "new-app created ${created.count()} objects named: ${created.names()}" 
                     }
                 }
             }
