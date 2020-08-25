@@ -47,7 +47,7 @@ pipeline
             {
                 script
                 {
-                    openshift.withCluster('https://192.168.99.100:8443/', 'eyJhbGciOiJSUzI1NiIsImtpZCI6IiJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJqdG9wIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6ImplbmtpbnMtdG9rZW4td2h2aGoiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC5uYW1lIjoiamVua2lucyIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6ImQ1MTk0M2NkLWU2YmQtMTFlYS04MTE5LTA4MDAyNzhjYTc3MCIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpqdG9wOmplbmtpbnMifQ.Rif3swEctoXyMJHAUQ__RWLSOuUHGGoStmLHNIi7sFZHkZhyi017GXy3Ot_E2u1Cae4QT-DSPhniw55zSR0H0lK4wt8ugge9BBQzbIXtO3u1oURvRRKPph2s1N7BlkvE4yTR5awbTZf4bH0vINpw3mXYM97AWz5FjHZRez4WX7slZrxqINNxScDIjI1Zlqv9azSa4DsSrtezvWM0EgplMpH3nh0kZ7iXlK3PJYdyzgfCoYMahgOSPgDGoQUonrP4q3W8E3Prn1r1IirQGw1lWs9AXKj9XA5D73mBJrGuZw1ye_lhCmOSD4a1kk_-diOUyqTL-Dn6nVqOaaYo3dRPwg')
+                    openshift.withCluster('https://192.168.99.100:8443/', 'openshift_login')
                     {
                         openshift.withProject( 'jtop' ) 
                         {
