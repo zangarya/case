@@ -14,16 +14,13 @@ pipeline
                 sh '''
                  mvn clean package
                  cd target
-                 cp rest-service-0.0.1-SNAPSHOT.jar msrest.jar 
+                 cp rest-service-0.0.1-SNAPSHOT.jar rest-service.jar 
                 '''
                 stash includes: 'target/*.jar', name: 'targetfiles'
             }
         }
         stage('Build Docker Image') 
         {
-            when {
-                branch 'master'
-            }
             steps {
                 script {
                     app = docker.build("eminturan/deneme-proje")
@@ -35,9 +32,6 @@ pipeline
         }
         stage('Push Docker Image') 
         {
-            when {
-                branch 'master'
-            }
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') {
