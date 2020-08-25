@@ -53,7 +53,9 @@ pipeline
                         {
                             echo "Hello from project ${openshift.project()} in cluster ${openshift.cluster()}"
                         }
+                        echo "Create Öncesi"
                         openshift.newApp("eminturan/denemes:latest", "--name=eminturan/denemes:latest").narrow('svc').expose()
+                        echo "Create Sonrası"
                     }
                 }
             }
