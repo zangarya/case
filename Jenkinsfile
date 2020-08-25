@@ -7,7 +7,8 @@ pipeline
         {
             steps
             {
-                sh 'echo hello world'
+                sh 'make' 
+                archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
             }
         }
     }
