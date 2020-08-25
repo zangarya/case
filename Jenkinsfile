@@ -1,6 +1,10 @@
 pipeline 
 {
     agent any
+    tools 
+    {
+        maven 'M3'
+    }
     stages 
     {
         stage('build')
@@ -8,7 +12,7 @@ pipeline
             steps 
             {
                 sh '''
-                 clean package
+                 mvn clean package
                  cd target
                  cp todo-app-java-on-azure-1.0-SNAPSHOT.jar msrest.jar 
                  zip msrest.zip app.jar web.config
