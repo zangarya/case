@@ -46,18 +46,9 @@ pipeline
             steps 
             {
                 sh 'oc login -u admin -p admin https://192.168.99.100:8443 --insecure-skip-tls-verify=true'
-                script
-                {
-                    openshift.withCluster('https://192.168.99.100:8443/', 'openshift_login')
-                    {
-                        openshift.withProject( 'jtop' ) 
-                        {
-                            echo "Hello from project ${openshift.project()} in cluster ${openshift.cluster()}"
-                            def created = openshift.newApp('eminturan/denemes')
-                            echo "new-app created ${created.count()} objects named: ${created.names()}" 
-                        }
-                    }
-                }
+                sh 'oc project jtop'
+                sh 'oc new-app eminturan/denemes:latest --name denemes'
+                sh 'oc expose service denemes'
             }
         }
     }
