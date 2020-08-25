@@ -7,7 +7,7 @@ pipeline
     }
     stages 
     {
-        stage('build')
+        stage('Build Jar')
         {
             steps 
             {
@@ -37,6 +37,18 @@ pipeline
                     {
                         app.push("${env.BUILD_NUMBER}")
                         app.push("latest")
+                    }
+                }
+            }
+        }
+        stage('Deploy To Openshift')
+        {
+            steps 
+            {
+                script
+                {
+                    openshift.withCluster( 'https://92.168.99.100:8443/', 'Y4NJ45sE_GpglJkDSS1ILO9GFWkyzT9JtXrpBQUpiYw' )
+                    {
                     }
                 }
             }
