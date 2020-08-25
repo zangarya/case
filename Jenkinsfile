@@ -1,6 +1,9 @@
 pipeline 
 {
     agent any
+    environment 
+        DOCKER_IMAGE_NAME = "eminturan/deneme"
+    }
     tools 
     {
         maven 'M3'
@@ -23,9 +26,9 @@ pipeline
         {
             steps {
                 script {
-                    app = docker.build("eminturan/deneme-proje")
+                    app = docker.build(DOCKER_IMAGE_NAME)
                     app.inside {
-                        sh 'echo $(curl localhost:8080)'
+                        sh 'echo Emin, Turan'
                     }
                 }
             }
