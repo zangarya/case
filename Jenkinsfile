@@ -41,7 +41,7 @@ pipeline
                 }
             }
         }
-        stage('Login Openshift')
+        stage('Deploy Openshift')
         {
             steps 
             {
@@ -53,18 +53,6 @@ pipeline
                         {
                             echo "Hello from project ${openshift.project()} in cluster ${openshift.cluster()}"
                         }
-                    }
-                }
-            }
-        }
-        stage('Deploy Openshift')
-        {
-            steps 
-            {
-                script
-                {
-                    openshift.withCluster()
-                    {
                         def saSelector = openshift.selector( 'serviceaccount' )
                         saSelector.describe()
                         saSelector.withEach 
