@@ -14,8 +14,7 @@ pipeline
                 sh '''
                  mvn clean package
                  cd target
-                 cp todo-app-java-on-azure-1.0-SNAPSHOT.jar msrest.jar 
-                 zip msrest.zip app.jar web.config
+                 cp rest-service-0.0.1-SNAPSHOT.jar msrest.jar 
                 '''
                 stash includes: 'target/*.jar', name: 'targetfiles'
             }
