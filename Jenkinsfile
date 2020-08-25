@@ -53,6 +53,7 @@ pipeline
                         {
                             echo "Hello from project ${openshift.project()} in cluster ${openshift.cluster()}"
                         }
+                        openshift.newApp("eminturan/denemes:latest", "--name=eminturan/denemes:latest").narrow('svc').expose()
                     }
                 }
             }
