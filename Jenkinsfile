@@ -29,9 +29,6 @@ pipeline
                 script 
                 {
                     app = docker.build(DOCKER_IMAGE_NAME) 
-                    app.inside {
-                        sh 'echo $(curl localhost:8080)'
-                    }
                 }
             }
         }
@@ -58,7 +55,7 @@ pipeline
                 sh 'oc delete route denemes'
                 sh 'oc delete service denemes'
                 sh 'oc delete dc denemes'
-                sh 'oc new-app eminturan/denemes --name=denemes'
+                sh 'oc new-app eminturan/denemes' env.BUILD_NUMBER ' --name=denemes'
                 sh 'oc expose service denemes'
             }
         }
