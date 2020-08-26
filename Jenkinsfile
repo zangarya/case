@@ -1,6 +1,9 @@
 pipeline 
 {
     agent any
+    environment {
+        DOCKER_IMAGE_NAME = "eminturan/denemes"
+    }
     tools 
     {
         maven 'M3'
@@ -21,27 +24,37 @@ pipeline
         }
         stage('Build Docker Image') 
         {
+            when {
+                branch 'master'
+            }
             steps {
                 script {
-                    app = docker.build("eminturan/denemes:latest")                    
+                    app = docker.build(DOCKER_IMAGE_NAME)                    
                 }
             }
         }
         stage('Push Docker Image') 
         {
+            when {
+                branch 'master'
+            }
             steps 
             {
                 script 
                 {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') 
                     {
-                        app.push()
+                        pp.push("${env.BUILD_NUMBER}")
+                        app.push("latest")
                     }
                 }
             }
         }
         stage('Deploy Openshift')
         {
+            when {
+                branch 'master'
+            }
             steps 
             {
                 sh 'oc login -u admin -p admin https://192.168.99.100:8443 --insecure-skip-tls-verify=true'
