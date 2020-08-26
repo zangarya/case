@@ -2,7 +2,7 @@ pipeline
 {
     agent any
     environment {
-        DOCKER_IMAGE_NAME = "eminturan/denemes"
+        DOCKER_IMAGE_NAME = "eminturan/denemes:latest"
     }
     tools 
     {
@@ -40,8 +40,7 @@ pipeline
                 {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') 
                     {
-                        app.push("${env.BUILD_NUMBER}")
-                        app.push("latest")
+                        app.push()
                     }
                 }
             }
