@@ -21,9 +21,6 @@ pipeline
         }
         stage('Build Docker Image') 
         {
-            when {
-                branch 'master'
-            }
             steps {
                 script {
                     app = docker.build("eminturan/denemes")                    
@@ -32,9 +29,6 @@ pipeline
         }
         stage('Push Docker Image') 
         {
-            when {
-                branch 'master'
-            }
             steps 
             {
                 script 
@@ -49,9 +43,6 @@ pipeline
         }
         stage('Deploy Openshift')
         {
-            when {
-                branch 'master'
-            }
             steps 
             {
                 sh 'oc login -u admin -p admin https://192.168.99.100:8443 --insecure-skip-tls-verify=true'
