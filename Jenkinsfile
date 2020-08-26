@@ -40,7 +40,7 @@ pipeline
                 {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') 
                     {
-                        app.push()
+                        app.push("")
                     }
                 }
             }
@@ -54,7 +54,7 @@ pipeline
                 sh 'oc delete route denemes'
                 sh 'oc delete service denemes'
                 sh 'oc delete dc denemes'
-                sh 'oc new-app eminturan/denemes:latest --name denemes'
+                sh 'oc new-app eminturan/denemes:latest --name=denemes'
                 sh 'oc expose service denemes'
             }
         }
