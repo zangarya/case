@@ -30,25 +30,24 @@ pipeline
                 {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') 
                     {
-                        def app = docker.build(DOCKER_IMAGE_NAME)    
-                        app.push()
+                        //app = docker.build(DOCKER_IMAGE_NAME)    
+                        //app.push()
+                        echo 'Docker Login xXx'
                     }
                 }
             }
         }
-        /*stage('Push Docker Image') 
+        stage('Push Docker Image') 
         {
             steps 
             {
                 script 
                 {
-                    docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') 
-                    {
-                        app.push()
-                    }
+                    app = docker.build(DOCKER_IMAGE_NAME)
+                    app.push()
                 }
             }
-        }*/
+        }
         stage('Deploy Openshift')
         {
             steps 
