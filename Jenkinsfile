@@ -23,7 +23,7 @@ pipeline
         {
             steps {
                 script {
-                    app = docker.build("eminturan/denemes")                    
+                    app = docker.build("eminturan/denemes:latest")                    
                 }
             }
         }
@@ -35,7 +35,7 @@ pipeline
                 {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') 
                     {
-                        app.push("latest")
+                        app.push()
                     }
                 }
             }
