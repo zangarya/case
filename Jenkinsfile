@@ -2,7 +2,7 @@ pipeline
 {
     agent any
     environment {
-        DOCKER_IMAGE_NAME = "eminturan/denemes:latest"
+        DOCKER_IMAGE_NAME = "eminturan/denemes"
     }
     tools 
     {
@@ -28,11 +28,9 @@ pipeline
             {
                 script 
                 {
-                    docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') 
-                    {
-                        //app = docker.build(DOCKER_IMAGE_NAME)    
-                        //app.push()
-                        echo 'Docker Login xXx'
+                    app = docker.build(DOCKER_IMAGE_NAME) 
+                    app.inside {
+                        sh 'echo $(curl localhost:8080)'
                     }
                 }
             }
@@ -43,8 +41,11 @@ pipeline
             {
                 script 
                 {
-                    app = docker.build(DOCKER_IMAGE_NAME)
-                    app.push()
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') 
+                    {
+                        app.push("${env.BUILD_NUMBER}")
+                        app.push("latest")
+                    }
                 }
             }
         }
@@ -57,7 +58,7 @@ pipeline
                 sh 'oc delete route denemes'
                 sh 'oc delete service denemes'
                 sh 'oc delete dc denemes'
-                sh 'oc new-app eminturan/denemes:latest --name=denemes'
+                sh 'oc new-app eminturan/denemes:' "${env.BUILD_NUMBER}" ' --name=denemes'
                 sh 'oc expose service denemes'
             }
         }
