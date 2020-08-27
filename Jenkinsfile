@@ -51,20 +51,17 @@ pipeline
         {
             steps 
             {
-                script
-                {
-                    docker.withRegistry() 
-                    {
-                        sh 'docker login -u admin -p admin localhost:8083'
-                        def xyz = sh 'docker pull localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER
-                    }
-                }
                 sh 'oc login -u admin -p admin https://192.168.99.100:8443 --insecure-skip-tls-verify=true'
                 sh 'oc project jtop'
                 sh 'oc delete route denemes'
                 sh 'oc delete service denemes'
                 sh 'oc delete dc denemes'
-                sh 'oc new-app ' + xyz + ' --name=denemes'
+                
+                sh 'docker login -u admin -p admin localhost:8083'
+                sh 'docker pull localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER
+                sh 'docker tag localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER + ' localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER
+                
+                sh 'oc new-app localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER + ' --name=denemes'
                 sh 'oc expose service denemes'
             }
         }
