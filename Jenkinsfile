@@ -56,11 +56,7 @@ pipeline
                 sh 'oc delete route denemes'
                 sh 'oc delete service denemes'
                 sh 'oc delete dc denemes'
-                
                 sh 'docker login -u admin -p admin localhost:8083'
-                sh 'docker pull localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER
-                sh 'docker tag localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER + 'x' + ' localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER
-                
                 sh 'oc new-app localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER + 'x --name=denemes'
                 sh 'oc expose service denemes'
             }
