@@ -41,7 +41,6 @@ pipeline
                     docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') 
                     {
                         sh 'docker tag eminturan/denemes:latest localhost:8123/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER
-                        sh 'docker login -u admin -p admin localhost:8123'
                         sh 'docker push localhost:8123/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER
                     }
                 }
