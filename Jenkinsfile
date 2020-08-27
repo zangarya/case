@@ -32,7 +32,7 @@ pipeline
                 }
             }
         }
-        stage('Push Docker Image') 
+        stage('Push Nexus Image') 
         {
             steps 
             {
@@ -40,8 +40,7 @@ pipeline
                 {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') 
                     {
-                        app.push("${env.BUILD_NUMBER}")
-                        app.push("latest")
+                        sh 'docker push localhost:8123/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER
                     }
                 }
             }
@@ -55,7 +54,7 @@ pipeline
                 sh 'oc delete route denemes'
                 sh 'oc delete service denemes'
                 sh 'oc delete dc denemes'
-                sh 'oc new-app eminturan/denemes:' + env.BUILD_NUMBER + ' --name=denemes'
+                sh 'oc new-app localhost:8123/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER + ' --name=denemes'
                 sh 'oc expose service denemes'
             }
         }
