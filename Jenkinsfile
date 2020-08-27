@@ -40,7 +40,8 @@ pipeline
                 {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') 
                     {
-                        sh 'docker tag eminturan/denemes:latest localhost:8123/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER
+                        sh 'docker tag eminturan/denemes:latest localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER
+                        sh 'docker login -u admin -p admin localhost:8083'
                         sh 'docker push localhost:8123/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER
                     }
                 }
@@ -55,7 +56,7 @@ pipeline
                 sh 'oc delete route denemes'
                 sh 'oc delete service denemes'
                 sh 'oc delete dc denemes'
-                sh 'oc new-app localhost:8123/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER + ' --name=denemes'
+                sh 'oc new-app localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER + ' --name=denemes'
                 sh 'oc expose service denemes'
             }
         }
