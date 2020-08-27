@@ -60,7 +60,7 @@ pipeline
                 sh 'docker login -u admin -p admin localhost:8083'
                 sh 'docker pull localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER
                 sh 'docker tag localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER + ' localhost:8083/jtop/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER
-                sh 'oc new-app localhost:8083/jtop' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER + ' --name=denemes'
+                sh 'oc new-app localhost:8083/jtop/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER + ' --name=denemes'
                 
                 sh 'oc expose service denemes'
             }
