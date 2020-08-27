@@ -42,7 +42,7 @@ pipeline
                     {
                         sh 'docker tag eminturan/denemes:latest localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER
                         sh 'docker login -u admin -p admin localhost:8083'
-                        sh 'docker push localhost:8123/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER
+                        sh 'docker push localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER
                     }
                 }
             }
