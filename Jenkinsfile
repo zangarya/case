@@ -41,7 +41,7 @@ pipeline
                     //docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') 
                     //{
                         sh 'docker tag eminturan/denemes:latest localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER
-                        sh 'sudo docker login -u admin -p admin localhost:8083'
+                        sh 'docker login -u admin -p admin localhost:8083'
                         sh 'docker push localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER
                         //sh 'docker tag denemes localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER
                         //sh 'docker push localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER
@@ -63,7 +63,7 @@ pipeline
                 //sh 'docker pull localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER
                 //sh 'docker tag localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER + ' denemes:' + env.BUILD_NUMBER
                 //sh 'docker pull localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER
-                sh 'sudo oc new-app localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER + ' --name=denemes'
+                sh 'oc new-app localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER + ' --name=denemes'
                 //sh 'oc new-app denemes:' + env.BUILD_NUMBER + ' --name=denemes'
                 
                 sh 'oc expose service denemes'
