@@ -58,11 +58,11 @@ pipeline
                 sh 'oc delete dc denemes'
                 
                 //sh 'docker login -u admin -p admin localhost:8083'
-                sh 'docker pull localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER
-                sh 'docker tag localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER + ' denemes:' + env.BUILD_NUMBER
                 //sh 'docker pull localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER
-                //sh 'oc new-app localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER + ' --name=denemes'
-                sh 'oc new-app denemes:' + env.BUILD_NUMBER + ' --name=denemes'
+                //sh 'docker tag localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER + ' denemes:' + env.BUILD_NUMBER
+                //sh 'docker pull localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER
+                sh 'oc new-app localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER + ' --name=denemes'
+                //sh 'oc new-app denemes:' + env.BUILD_NUMBER + ' --name=denemes'
                 
                 sh 'oc expose service denemes'
             }
