@@ -2,7 +2,7 @@ pipeline
 {
     agent any
     environment {
-        DOCKER_IMAGE_NAME = "eminturan/denemes"
+        DOCKER_IMAGE_NAME = "denemes"
     }
     tools 
     {
@@ -38,12 +38,14 @@ pipeline
             {
                 script 
                 {
-                    docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') 
-                    {
-                        sh 'docker tag eminturan/denemes:latest localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER
+                    //docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') 
+                    //{
+                        //sh 'docker tag eminturan/denemes:latest localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER
                         sh 'docker login -u admin -p admin localhost:8083'
+                        //sh 'docker push localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER
+                        sh 'docker tag denemes localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER
                         sh 'docker push localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER
-                    }
+                    //}
                 }
             }
         }
