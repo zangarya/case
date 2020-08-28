@@ -63,8 +63,12 @@ pipeline
                 //sh 'docker pull localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER
                 //sh 'docker tag localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER + ' denemes:' + env.BUILD_NUMBER
                 //sh 'docker pull localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER
-                sh 'oc new-app localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER + ' --name=denemes'
+                //**sh 'oc new-app localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER + ' --name=denemes'
                 //sh 'oc new-app denemes:' + env.BUILD_NUMBER + ' --name=denemes'
+                
+                sh 'docker pull localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER
+                sh 'docker tag localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER + ' 172.30.1.1:5000/jtop/denemes' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER
+                sh 'oc new-app 172.30.1.1:5000/jtop/denemes/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER + ' --name=denemes'
                 
                 sh 'oc expose service denemes'
             }
