@@ -57,7 +57,7 @@ pipeline
                 sh 'oc delete service denemes'
                 sh 'oc delete dc denemes'
                 
-                sh 'docker login -u admin -p admin localhost:8082'
+                sh 'docker login -u admin -p admin localhost:8083'
                 //sh 'docker pull localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER
                 sh 'oc new-app localhost:8082/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER + ' --name=denemes'
                 
