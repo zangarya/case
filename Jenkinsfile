@@ -43,8 +43,11 @@ pipeline
                         //**sh 'docker tag eminturan/denemes:latest localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER
                         //**sh 'docker login -u admin -p admin localhost:8083'
                         //**sh 'docker push localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER
-                        sh 'docker login -u eminturan -p emin87945'
-                        sh 'docker push ' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') 
+                    {
+                        app.push("${env.BUILD_NUMBER}")
+                        app.push("latest")
+                    }
                         //sh 'docker tag denemes localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER
                         //sh 'docker push localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER
                     //}
