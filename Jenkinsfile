@@ -61,6 +61,7 @@ pipeline
                 sh 'oc delete service denemes'
                 sh 'oc delete dc denemes'*/
                 
+                sh 'oc import-image eminturan/denemes:latest'
                 sh 'oc rollout latest dc/denemes -n denemes-project'
                 
                 //sh 'docker login -u admin -p admin localhost:8083'
