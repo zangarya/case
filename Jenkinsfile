@@ -62,7 +62,7 @@ pipeline
                 sh 'oc delete dc denemes'*/
                 
                 sh 'oc import-image eminturan/denemes:latest --confirm'
-                sh 'oc rollout latest dc/denemes -n denemes-project'
+                //sh 'oc rollout latest dc/denemes -n denemes-project'
                 
                 //sh 'docker login -u admin -p admin localhost:8083'
                 //sh 'docker pull localhost:8083/' + DOCKER_IMAGE_NAME + ':' + env.BUILD_NUMBER
