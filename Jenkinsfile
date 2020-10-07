@@ -2,7 +2,7 @@ pipeline
 {
     agent any
     environment {
-        DOCKER_IMAGE_NAME = "zangarya/msrest"
+        DOCKER_IMAGE_NAME = "zangarya/test"
     }
     tools 
     {
