@@ -76,6 +76,6 @@ pipeline
                 
                 /*sh 'oc expose service denemes'*/
             }
-        } */
+        */} 
     }
 }
