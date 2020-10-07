@@ -51,6 +51,7 @@ pipeline
                 }
             }
         }
+        /*
         stage('DeployToProduction') {
             when {
                 branch 'master'
@@ -65,7 +66,6 @@ pipeline
                 )
             }
         }
-        /*
         stage('Deploy Openshift')
         {
             steps 
