@@ -50,8 +50,8 @@ pipeline
                     }
                 }
             }
-        }
-        /*stage('Deploy Openshift')
+        }/*
+        stage('Deploy Openshift')
         {
             steps 
             {
