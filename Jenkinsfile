@@ -50,7 +50,7 @@ pipeline
                     }
                 }
             }
-        }/*
+        }
         stage('Deploy Openshift')
         {
             steps 
@@ -76,6 +76,6 @@ pipeline
                 
                 /*sh 'oc expose service denemes'*/
             }
-        */} 
+        } 
     }
 }
