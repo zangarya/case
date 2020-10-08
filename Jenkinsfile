@@ -66,6 +66,15 @@ pipeline
                 )
             }
         }
+        stage('Orchestrate') {
+            steps{
+                script{
+                    sh 'helm create helm-myapp'
+                    sh 'helm package helm-myapp'
+                    sh 'helm install helm-myapp-0.1.0.tgz --generate-name'
+                }
+                }
+        }   
         stage('Deploy Openshift')
         {
             steps 
