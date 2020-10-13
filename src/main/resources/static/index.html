@@ -3,21 +3,6 @@
 	</head>
 	
 	<body>
-		<input type="text" id="txtGiris" style="width:300px;"/>
-		<br>
-		<input type="button" id="btn" value="Emin--" onclick="tikla();"/>
-		<br>
-		<input type="text" id="txtSonuc" style="width:300px;"/>
-		<br>
-		<br>
-		<input type="button" id="btn" value="Gönder" onclick="tikla();"/>
-		
-		<script>
-			function tikla()
-			{
-				var url_getir = "http://localhost:8080/greeting?name="+txtGiris.value;
-				fetch(url_getir).then(response => response.text()).then(res => txtSonuc.value = res).catch(err => {console.log(err.message)});
-			}
-		</script>
+		HELLO WORLD
 	</body>
 </html>
