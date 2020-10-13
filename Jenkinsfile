@@ -86,13 +86,6 @@ pipeline
                 sh 'oc import-image eminturan/denemes:latest --confirm'
                 
             }
-        } 
-        stage('Deploy Google Cloud')
-        {
-            steps 
-            {
-                sh 'gcloud app deploy ~/my_app/app.yaml'
-                
-            }
         }*/
+    }
 }
