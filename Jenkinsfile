@@ -32,7 +32,7 @@ pipeline
                 }
             }
         }
-        stage('Push Nexus Image') 
+        stage('Push DockerHub Image') 
         {
             steps 
             {
