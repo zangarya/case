@@ -16,11 +16,7 @@ pipeline
               sh "docker-compose up -d"
            }
        }
-        post {
-            always {
-                sh "docker-compose down || true"
-                }
-         }
+        
         stage('Build Jar')
         {
             steps 
